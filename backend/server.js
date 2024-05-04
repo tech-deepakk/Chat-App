@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import authRouter from "./routes/authRoute.js";
 import messageRouter from "./routes/messageRoute.js";
+import userRouter from "./routes/userRoute.js";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 
@@ -15,6 +16,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
+app.use("/api/users", userRouter);
 
 app.get("/", (req, res) => {
   // this is the root
