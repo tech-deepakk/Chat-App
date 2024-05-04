@@ -1,7 +1,4 @@
-import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-
-dotenv.config();
 
 const generateTokenAndCookie = (userId, res) => {
   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
