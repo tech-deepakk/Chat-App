@@ -9,6 +9,7 @@ const conversationSchema = new mongoose.Schema(
     messages: {
       type: Array,
       require: true,
+      ref: "messages",
       default: [],
     },
   },
