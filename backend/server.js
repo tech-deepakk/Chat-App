@@ -5,12 +5,14 @@ import messageRouter from "./routes/messageRoute.js";
 import userRouter from "./routes/userRoute.js";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 8000;
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
