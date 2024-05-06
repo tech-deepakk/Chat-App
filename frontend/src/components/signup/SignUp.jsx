@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import GenderCheck from "./GenderCheck";
 
 function SignUp() {
@@ -50,12 +51,12 @@ function SignUp() {
             />
           </div>
           <GenderCheck></GenderCheck>
-          <a
-            href="#"
+          <Link
+           to="/login"
             className=" text-sm hover:underline hover:text-blue-600 mt-4 inline-block "
           >
             Already have an Account
-          </a>
+          </Link>
           <div class="flex justify-between">
             <button type="reset" className="btn btn-info btn-md mt-2">
               Reset

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center min-w-96 max-auto ">
@@ -27,12 +29,12 @@ const Login = () => {
               className=" w-full input input-bordered h-10"
             />
           </div>
-          <a
-            href="#"
+          <Link
+            to="/signUp"
             className=" text-sm hover:underline hover:text-blue-600 mt-4 inline-block"
           >
             Don't have an Account
-          </a>
+          </Link>
           <div class="flex justify-between">
             <button type="reset" className="btn btn-info btn-md mt-2">
               Reset
