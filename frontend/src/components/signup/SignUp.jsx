@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
+import useSignUp from "../../hooks/useSignUp";
 
 function SignUp() {
   const fullName = useRef("");
@@ -12,8 +13,18 @@ function SignUp() {
     setGender(value);
   };
 
-  const handleOnSignUp = (event) => {
+  const { loadind, signup } = useSignUp();
+
+  const handleOnSignUp = async (event) => {
     event.preventDefault();
+    const input = {
+      fullName: fullName.current.value,
+      userName: userName.current.value,
+      password: password.current.value,
+      confirmPassword: confirmPassword.current.value,
+      gender: gender,
+    };
+    await signup(input);
   };
 
   return (
