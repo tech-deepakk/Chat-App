@@ -1,3 +1,4 @@
+import MessageContainer from "../message/MessageContainer";
 import Sidebar from "../sidebar/Sidebar";
 
 function Home() {
@@ -8,6 +9,7 @@ function Home() {
     "
     >
       <Sidebar></Sidebar>
+      <MessageContainer></MessageContainer>
     </div>
   );
 }
