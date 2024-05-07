@@ -1,12 +1,19 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import useLogin from "../../hooks/useLogin";
 
 const Login = () => {
   const userName = useRef();
   const password = useRef();
 
-  const handleOnLogin = (event) => {
+  const { loading, login } = useLogin();
+
+  const handleOnLogin = async (event) => {
     event.preventDefault();
+    await login({
+      userName: userName.current.value,
+      password: password.current.value,
+    });
   };
 
   return (
@@ -49,9 +56,13 @@ const Login = () => {
             <button type="reset" className="btn btn-info btn-md mt-2">
               Reset
             </button>
-            <button type="submit" className="btn btn-info btn-md mt-2">
-              LogIn
-            </button>
+            {loading ? (
+              <span className="loading loading-spinner loading-md"></span>
+            ) : (
+              <button type="submit" className="btn btn-info btn-md mt-2">
+                LogIn
+              </button>
+            )}
           </div>
         </form>
       </div>
