@@ -8,7 +8,7 @@ function LogoutButton() {
   return (
     <div className="mt-auto">
       {loading ? (
-        <span>loading spinner</span>
+        <span className="loading loading-spinner loading-md"></span>
       ) : (
         <BiLogOut
           className="w-6 h-6 text-white cursor-pointer"
