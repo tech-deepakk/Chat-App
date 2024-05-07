@@ -44,7 +44,7 @@ export const signUp = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error("error in signup controller ", error);
+    console.error("error in signup controller ", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -71,7 +71,7 @@ export const login = async (req, res) => {
       profilePic: user.profilePic,
     });
   } catch (error) {
-    console.error("error in login controller ", error);
+    console.error("error in login controller ", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -83,7 +83,7 @@ export const logOut = (req, res) => {
     });
     res.status(200).json("LogOut Successfully");
   } catch (error) {
-    console.log("error in logout controller", error);
+    console.log("error in logout controller", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
