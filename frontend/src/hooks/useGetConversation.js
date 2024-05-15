@@ -11,6 +11,7 @@ function useGetConversation() {
       try {
         const res = await fetch("http://localhost:5000/api/users", {
           method: "get",
+          credentials: "include",
         });
         const data = await res.json();
 
