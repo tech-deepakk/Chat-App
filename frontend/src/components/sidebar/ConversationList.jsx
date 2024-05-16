@@ -4,16 +4,20 @@ import useGetConversation from "../../hooks/useGetConversation";
 
 function ConversationList() {
   const { loading, conversation } = useGetConversation([]);
-  console.log(conversation);
+
   return (
     <div className="py-2 flex flex-col overflow-auto">
-      <Conversation></Conversation>
-      <Conversation></Conversation>
-      <Conversation></Conversation>
-
-      <Conversation></Conversation>
-      <Conversation></Conversation>
-      <Conversation></Conversation>
+      {loading ? (
+        <span className="loading loading-spinner loading-md"></span>
+      ) : (
+        conversation.map((user, indx) => (
+          <Conversation
+            key={user._id}
+            user={user}
+            lastIndx={indx === conversation.length - 1}
+          ></Conversation>
+        ))
+      )}
     </div>
   );
 }
