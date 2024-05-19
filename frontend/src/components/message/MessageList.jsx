@@ -1,12 +1,22 @@
+import { useEffect, useRef } from "react";
 import useGetMessages from "../../hooks/useGetMessages";
 import MessageSkeleton from "../skeleton/MessageSkeleton";
 import Message from "./Message";
 
 function MessageList() {
   const { messages, loading } = useGetMessages();
+  const chatContainerRef = useRef(null);
+
+  // Scroll to the bottom whenever messages are updated
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   return (
-    <div className="px-4 flex-1 overflow-auto">
+    <div ref={chatContainerRef} className="px-4 flex-1 overflow-auto">
       {!loading &&
         messages.length > 0 &&
         messages.map((message) => (
