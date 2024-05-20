@@ -49,6 +49,10 @@ export const getMessage = async (req, res) => {
       },
     }).populate("messages"); //It gives actual message not the ref
 
+    if (!conversation) {
+      return res.status(200).json([]);
+    }
+    
     const messages = conversation.messages;
     res.status(201).json(messages);
   } catch (error) {
