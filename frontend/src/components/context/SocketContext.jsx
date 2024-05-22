@@ -17,9 +17,10 @@ export const SocketContextProvider = ({ children }) => {
     if (authUser) {
       const socket = io("http://localhost:5000", {
         query: {
-          userId: authUser._id,
+          userId: authUser.id,
         },
       });
+
       setSocket(socket);
 
       socket.on("getOnlineUsers", (users) => {
@@ -33,7 +34,7 @@ export const SocketContextProvider = ({ children }) => {
         setSocket(null);
       }
     }
-  }, []);
+  }, [authUser]);
 
   return (
     <SocketContext.Provider value={{ socket, onlineUser }}>
