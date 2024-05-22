@@ -6,8 +6,8 @@ import userRouter from "./routes/userRoute.js";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import cors from "cors";
+import { app, server } from "./socket/socket.js";
 
-const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 8000;
@@ -32,7 +32,7 @@ async function connetDb() {
   } catch (error) {}
 }
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`server started at ${PORT}`);
   connetDb();
 });
