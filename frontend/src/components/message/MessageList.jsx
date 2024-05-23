@@ -2,10 +2,12 @@ import { useEffect, useRef } from "react";
 import useGetMessages from "../../hooks/useGetMessages";
 import MessageSkeleton from "../skeleton/MessageSkeleton";
 import Message from "./Message";
+import useListenMessage from "../../hooks/useListenMessage";
 
 function MessageList() {
   const { messages, loading } = useGetMessages();
   const chatContainerRef = useRef(null);
+  useListenMessage();
 
   // Scroll to the bottom whenever messages are updated
   useEffect(() => {
