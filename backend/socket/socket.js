@@ -12,11 +12,22 @@ const io = new Server(server, {
   },
 });
 
+const userSocketMap = {}; //{userId : socketId}
+
 io.on("connection", (socket) => {
   console.log("the user connect is ", socket.id);
 
-  socket.on("disconnec", () => {
+  const userId = socket.handshake.query.userId;
+
+  if (userId != "undefined") userSocketMap[userId] = socket.id;
+
+  //   io.emit is use to send the event to all the connected device
+  io.emit("getOnlineUsers", Object.keys(userSocketMap));
+
+  socket.on("disconnect", () => {
     console.log("user disconnect ", socket.id);
+    delete userSocketMap[userId];
+    io.emit("getOnlineUsers", Object.keys(userSocketMap));
   });
 });
 
