@@ -5,12 +5,15 @@ import useConversation from "../components/zustand/useConversation";
 
 function useListenMessage() {
   const { socket } = useSocketContext();
-  const { messages, setMessages } = useConversation();
+  const { messages, setMessages, selectedConversation } = useConversation();
+
   useEffect(() => {
-    socket?.on("newMessage", (newMessage) => {
-      setMessages([...messages, newMessage]);
-      const audio = new Audio(notification);
-      audio.play();
+    socket?.on("newMessage", (newMessage, senderId) => {
+      if (selectedConversation._id === senderId) {
+        setMessages([...messages, newMessage]);
+        const audio = new Audio(notification);
+        audio.play();
+      }
     });
 
     return () => {
