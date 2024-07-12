@@ -16,7 +16,7 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "https://v-chat-sq4x.onrender.com", credentials: true }));
 
 app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
@@ -31,11 +31,11 @@ app.get("*", (req, res) => {
 async function connetDb() {
   try {
     await mongoose.connect(process.env.DB_URL);
-    console.log("db connected");
+    // console.log("db connected");
   } catch (error) {}
 }
 
 server.listen(PORT, () => {
-  console.log(`server started at ${PORT}`);
+  // console.log(`server started at ${PORT}`);
   connetDb();
 });
