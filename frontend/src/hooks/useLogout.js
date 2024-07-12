@@ -8,7 +8,7 @@ const useLogout = () => {
 
   const logout = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth/logout", {
+      const res = await fetch("https://v-chat-sq4x.onrender.com/api/auth/logout", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

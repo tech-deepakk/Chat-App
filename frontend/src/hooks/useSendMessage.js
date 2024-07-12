@@ -10,7 +10,7 @@ function useSendMessage() {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:5000/api/messages/send/${selectedConversation._id}`,
+        `https://v-chat-sq4x.onrender.com/api/messages/send/${selectedConversation._id}`,
         {
           method: "post",
           headers: { "Content-Type": "application/json" },
