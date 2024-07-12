@@ -16,7 +16,9 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: "https://v-chat-sq4x.onrender.com", credentials: true }));
+app.use(
+  cors({ origin: "https://v-chat-sq4x.onrender.com", credentials: true })
+);
 
 app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
@@ -28,14 +30,20 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
 });
 
-async function connetDb() {
+async function connectDb() {
   try {
     await mongoose.connect(process.env.DB_URL);
     // console.log("db connected");
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-server.listen(PORT, () => {
-  // console.log(`server started at ${PORT}`);
-  connetDb();
+server.listen(PORT, async () => {
+  try {
+    await connectDb();
+    // console.log(`Server started at ${PORT}`);
+  } catch (error) {
+    console.error("Server startup failed:", error.message);
+  }
 });
